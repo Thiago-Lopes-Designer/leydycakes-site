@@ -1,3 +1,22 @@
+// Splash de abertura: mostra a logo só na primeira visita da sessão.
+const splash = document.getElementById("splash");
+if (splash) {
+  const alreadySeen = sessionStorage.getItem("leydycakes_splash_seen");
+  const reduceMotionSplash = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (alreadySeen || reduceMotionSplash) {
+    splash.remove();
+  } else {
+    document.body.classList.add("splash-lock");
+    sessionStorage.setItem("leydycakes_splash_seen", "1");
+    setTimeout(() => {
+      splash.classList.add("splash-hide");
+      document.body.classList.remove("splash-lock");
+      splash.addEventListener("transitionend", () => splash.remove(), { once: true });
+    }, 1000);
+  }
+}
+
 // Hero: a grade de pontos brilha seguindo o mouse (só em telas com hover real).
 const heroSection = document.querySelector(".hero");
 const heroPattern = document.querySelector(".hero-pattern");

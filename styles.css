@@ -19,6 +19,17 @@ button,input{font:inherit}
 .skip-link{position:absolute;left:-999px;top:10px}
 .skip-link:focus{left:10px;z-index:9999;background:white;padding:10px 14px;border-radius:10px}
 
+/* ===== Splash de abertura ===== */
+.splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,var(--brown) 0%,var(--brown-dark) 75%);transition:opacity .5s ease,visibility .5s ease}
+.splash-logo{width:min(200px,42vw);opacity:0;transform:scale(.85);animation:splashLogo .7s cubic-bezier(.2,.8,.2,1) .1s forwards}
+.splash.splash-hide{opacity:0;visibility:hidden;pointer-events:none}
+@keyframes splashLogo{to{opacity:1;transform:scale(1)}}
+body.splash-lock{overflow:hidden}
+@media (prefers-reduced-motion:reduce){
+  .splash{display:none}
+  body.splash-lock{overflow:auto}
+}
+
 /* ===== Header ===== */
 .site-header{position:sticky;top:0;z-index:100;background:var(--brown);border-bottom:3px solid var(--orange)}
 .nav-wrap{min-height:72px;display:flex;align-items:center;justify-content:space-between}
